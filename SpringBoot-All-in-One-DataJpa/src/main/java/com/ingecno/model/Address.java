@@ -26,8 +26,7 @@ public class Address {
 	private String country;
 	private String state;
 	//we will add one transient field for userId
-	@Transient
-	private Long userId;
+	private transient Long userId;
 
 	@JsonIgnoreProperties("addresses")
 	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER, targetEntity = Users.class)
@@ -75,7 +74,7 @@ public class Address {
 	}
 
 	public Long getUserId() {
-		return userId;
+		return user.getuId();
 	}
 
 	public void setUserId(Long userId) {

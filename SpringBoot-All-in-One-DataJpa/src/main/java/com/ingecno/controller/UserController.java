@@ -11,7 +11,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.ingecno.model.Role;
 import com.ingecno.model.Users;
+import com.ingecno.repository.RoleRepository;
 import com.ingecno.service.UserService;
 
 @RestController
@@ -20,6 +22,9 @@ public class UserController {
 
 	@Autowired
 	private UserService userService;
+
+	@Autowired
+	private RoleRepository roleRepository;
 
 	// get all users
 	@GetMapping
@@ -38,6 +43,11 @@ public class UserController {
 	// add new users
 	@PostMapping
 	public Users addUsers(@RequestBody Users user) {
+		System.err.println("in post mapping...");
+		System.err.println(user.getRoleId());
+		Role r= roleRepository.findById(user.getRoleId()).get();
+		System.err.println(r);
+		user.setRole(r);
 		return userService.addUsers(user);
 
 	}

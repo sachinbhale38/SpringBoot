@@ -28,8 +28,8 @@ public class Users {
 	private Long uId;
 	private String userName;
 	private String password;
-	@Transient
-	private Long rId;
+
+	private transient Long roleId;
 
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "r_Id")
@@ -87,18 +87,18 @@ public class Users {
 		this.addresses = addresses;
 	}
 
-	public Long getrId() {
-		return rId;
-	}
-
-	public void setrId(Long rId) {
-		this.rId = rId;
-	}
-
 	@Override
 	public String toString() {
-		return "Users [uId=" + uId + ", userName=" + userName + ", password=" + password + ", rId=" + rId + ", role="
+		return "Users [uId=" + uId + ", userName=" + userName + ", password=" + password + ", rId=" + roleId + ", role="
 				+ role + ", addresses=" + addresses + "]";
+	}
+
+	public Long getRoleId() {
+		return role.getrId();
+	}
+
+	public void setRoleId(Long roleId) {
+		this.roleId = roleId;
 	}
 
 }

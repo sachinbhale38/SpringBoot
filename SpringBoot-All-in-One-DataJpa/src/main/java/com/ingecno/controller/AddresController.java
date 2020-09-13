@@ -43,6 +43,7 @@ public class AddresController {
 	// add new address
 	@PostMapping
 	public Address addAddress(@RequestBody Address address) {
+		System.err.println("adding new address....");
 		address.setUser(userService.getUserById(address.getUserId()));
 		return AddressService.addAddress(address);
 
